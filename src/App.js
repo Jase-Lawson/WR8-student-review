@@ -24,7 +24,7 @@ class App extends Component {
       <div className="App" >
         <Header user={user} updateUser={this.updateUser} />
         <h1> Hello World!</h1>
-        {/* <Container /> */}
+        <Container />
       </div >
     );
   }

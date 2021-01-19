@@ -1,5 +1,7 @@
 import { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { getCaughtPokemon } from '../../Ducks/reducer'
 
 class Header extends Component {
   constructor() {
@@ -33,6 +35,7 @@ class Header extends Component {
     axios
       .post('/auth/login', { name, password })
       .then(res => {
+        this.props.getCaughtPokemon();
         this.props.updateUser(res.data);
         this.setState({ name: '', password: '' });
       })
@@ -75,4 +78,10 @@ class Header extends Component {
 
 }
 
-export default Header
+const mapStateToProps = reduxState => {
+  return {
+    reducer: reduxState.reducer
+  }
+}
+
+export default connect(null, { getCaughtPokemon })(Header)

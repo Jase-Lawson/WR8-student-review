@@ -4,7 +4,8 @@ const express = require('express'),
   session = require('express-session'),
   app = express(),
   { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env,
-  authCtrl = require('./controller/authController');
+  authCtrl = require('./controller/authController'),
+  pokeCtrl = require('./controller/pokeController');
 
 
 app.use(express.json());
@@ -26,6 +27,9 @@ massive({
 app.post('/auth/register', authCtrl.register);
 app.post('/auth/login', authCtrl.login);
 app.get('/auth/logout', authCtrl.logout)
+
+app.get('/api/pokemon', pokeCtrl.getCaughtPokemon)
+app.post('/api/catch/pokemon', pokeCtrl.catchPokemon)
 
 
 

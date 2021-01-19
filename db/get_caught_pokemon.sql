@@ -1,0 +1,1 @@
+select * from team where trainer_id = $1;
